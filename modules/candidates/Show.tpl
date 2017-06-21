@@ -6,7 +6,7 @@ use OpenCATS\UI\CandidateQuickActionMenu;
     <?php TemplateUtility::printHeader('Candidate - '.$this->data['firstName'].' '.$this->data['lastName'], array( 'js/activity.js', 'js/sorttable.js', 'js/match.js', 'js/lib.js', 'js/pipeline.js', 'js/attachment.js', 'modules/candidates/quickAction-candidates.js')); ?>
 <?php else: ?>
     <?php TemplateUtility::printHeader('Candidate - '.$this->data['firstName'].' '.$this->data['lastName'], array( 'js/activity.js', 'js/sorttable.js', 'js/match.js', 'js/lib.js', 'js/pipeline.js', 'js/attachment.js', 'modules/candidates/quickAction-candidates.js')); ?>
-    
+
     <?php TemplateUtility::printHeaderBlock(); ?>
     <?php TemplateUtility::printTabs($this->active); ?>
         <div id="main">
@@ -56,6 +56,11 @@ use OpenCATS\UI\CandidateQuickActionMenu;
                                         <?php TemplateUtility::printSingleQuickActionMenu(new CandidateQuickActionMenu(DATA_ITEM_CANDIDATE, $this->data['candidateID'], $_SESSION['CATS']->getAccessLevel('candidates.edit'))); ?>
                                     </span>
                                 </td>
+                            </tr>
+
+                            <tr>
+                                <td class="vertical">Alias/Nick Name:</td>
+                                <td class="data"><?php $this->_($this->data['alias']); ?></td>
                             </tr>
 
                             <tr>
@@ -589,5 +594,5 @@ use OpenCATS\UI\CandidateQuickActionMenu;
     </div>
 
 <?php endif; ?>
-	
+
 <?php TemplateUtility::printFooter(); ?>

@@ -80,7 +80,7 @@ class CandidatesUI extends UserInterface
     public function handleRequest()
     {
         if (!eval(Hooks::get('CANDIDATES_HANDLE_REQUEST'))) return;
-        
+
         $action = $this->getAction();
         switch ($action)
         {
@@ -201,7 +201,7 @@ class CandidatesUI extends UserInterface
                     $this->addCandidateTags();
                 }
             	break;
-                
+
             /* Change candidate-joborder status. */
             case 'addActivityChangeStatus':
                 if ($this->getUserAccessLevel('pipelines.addActivityChangeStatus') < ACCESS_LEVEL_EDIT)
@@ -325,9 +325,9 @@ class CandidatesUI extends UserInterface
         }
     }
 
-    
-    
-    
+
+
+
     /*
      * Called by external modules for adding candidates.
      */
@@ -855,6 +855,7 @@ class CandidatesUI extends UserInterface
                 'firstName'       => $this->getTrimmedInput('firstName', $_POST),
                 'middleName'      => $this->getTrimmedInput('middleName', $_POST),
                 'lastName'        => $this->getTrimmedInput('lastName', $_POST),
+                'alias'           => $this->getTrimmedInput('alias', $_POST),
                 'email1'          => $this->getTrimmedInput('email1', $_POST),
                 'email2'          => $this->getTrimmedInput('email2', $_POST),
                 'phoneHome'       => $this->getTrimmedInput('phoneHome', $_POST),
@@ -1257,6 +1258,7 @@ class CandidatesUI extends UserInterface
         $firstName       = $this->getTrimmedInput('firstName', $_POST);
         $middleName      = $this->getTrimmedInput('middleName', $_POST);
         $lastName        = $this->getTrimmedInput('lastName', $_POST);
+        $alias           = $this->getTrimmedInput('alias', $_POST);
         $email1          = $this->getTrimmedInput('email1', $_POST);
         $email2          = $this->getTrimmedInput('email2', $_POST);
         $address         = $this->getTrimmedInput('address', $_POST);
@@ -1294,6 +1296,7 @@ class CandidatesUI extends UserInterface
             $firstName,
             $middleName,
             $lastName,
+            $alias,
             $email1,
             $email2,
             $phoneHome,
@@ -1378,7 +1381,7 @@ class CandidatesUI extends UserInterface
      */
     private function considerForJobSearch($candidateIDArray = array())
     {
-        
+
         /* Get list of candidates. */
         if (isset($_REQUEST['candidateIDArrayStored']) && $this->isRequiredIDValid('candidateIDArrayStored', $_REQUEST, true))
         {
@@ -1731,19 +1734,19 @@ class CandidatesUI extends UserInterface
 
         $candidateID	= $_POST['candidateID'];
         $tagIDs			= $_POST['candidate_tags'];
-        
+
         $tags = new Tags($this->_siteID);
         $tags->AddTagsToCandidate($candidateID, $tagIDs);
-        
+
         $this->_template->assign('candidateID', $candidateID);
         $this->_template->assign('isFinishedMode', true);
         $this->_template->display(
             './modules/candidates/AssignCandidateTagModal.tpl'
         );
-        
+
     }
-    
-   
+
+
     private function addCandidateTags()
     {
         /* Bail out if we don't have a valid candidate ID. */
@@ -1766,22 +1769,22 @@ class CandidatesUI extends UserInterface
                 'The specified candidate ID could not be found.'
             );*/
         }
-        
+
         $tags = new Tags($this->_siteID);
         $tagsRS = $tags->getAll();
-        
+
         $this->_template->assign('candidateID', $candidateID);
         $this->_template->assign('assignedTags', $tags->getCandidateTagsID($candidateID));
         $this->_template->assign('isFinishedMode', false);
-        
+
         $this->_template->assign('tagsRS', $tagsRS);
         $this->_template->display(
             './modules/candidates/AssignCandidateTagModal.tpl'
         );
-        
+
     }
-    
-    
+
+
     private function onAddActivityChangeStatus()
     {
         /* Bail out if we don't have a valid regardingjob order ID. */
@@ -2993,7 +2996,7 @@ class CandidatesUI extends UserInterface
                 $jobOrders = new JobOrders($this->_siteID);
                 $jobOrders->updateOpeningsAvailable($regardingID, $data['openingsAvailable'] - 1);
             }
-            
+
             /* If status is changed from placed to something else, increase number of open positions by one. */
             if ($statusID != PIPELINE_STATUS_PLACED && $data['statusID'] == PIPELINE_STATUS_PLACED)
             {

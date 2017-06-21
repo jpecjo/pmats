@@ -64,6 +64,7 @@ class Candidates
      * @param string First name.
      * @param string Middle name / initial.
      * @param string Last name.
+     * @param string Alias.
      * @param string Primary e-mail address.
      * @param string Secondary e-mail address.
      * @param string Home phone number.
@@ -91,7 +92,7 @@ class Candidates
      * @param boolean Skip creating a history entry?
      * @return integer Candidate ID of new candidate, or -1 on failure.
      */
-    public function add($firstName, $middleName, $lastName, $email1, $email2,
+    public function add($firstName, $middleName, $lastName, $alias, $email1, $email2,
         $phoneHome, $phoneCell, $phoneWork, $address, $city, $state, $zip,
         $source, $keySkills, $dateAvailable, $currentEmployer, $canRelocate,
         $currentPay, $desiredPay, $notes, $webSite, $bestTimeToCall, $enteredBy, $owner,
@@ -103,6 +104,7 @@ class Candidates
                 first_name,
                 middle_name,
                 last_name,
+                alias,
                 email1,
                 email2,
                 phone_home,
@@ -157,6 +159,7 @@ class Candidates
                 %s,
                 %s,
                 %s,
+                %s,
                 0,
                 %s,
                 %s,
@@ -170,6 +173,7 @@ class Candidates
             $this->_db->makeQueryString($firstName),
             $this->_db->makeQueryString($middleName),
             $this->_db->makeQueryString($lastName),
+            $this->_db->makeQueryString($alias),
             $this->_db->makeQueryString($email1),
             $this->_db->makeQueryString($email2),
             $this->_db->makeQueryString($phoneHome),
@@ -221,6 +225,7 @@ class Candidates
      * @param string First name.
      * @param string Middle name / initial.
      * @param string Last name.
+     * @param string Alias.
      * @param string Primary e-mail address.
      * @param string Secondary e-mail address.
      * @param string Home phone number.
@@ -246,7 +251,7 @@ class Candidates
      * @param string EEO disability status, or '' to not specify.
      * @return boolean True if successful; false otherwise.
      */
-    public function update($candidateID, $isActive, $firstName, $middleName, $lastName,
+    public function update($candidateID, $isActive, $firstName, $middleName, $lastName, $alias,
         $email1, $email2, $phoneHome, $phoneCell, $phoneWork, $address,
         $city, $state, $zip, $source, $keySkills, $dateAvailable,
         $currentEmployer, $canRelocate, $currentPay, $desiredPay,
@@ -261,6 +266,7 @@ class Candidates
                 first_name            = %s,
                 middle_name           = %s,
                 last_name             = %s,
+                alias                 = %s,
                 email1                = %s,
                 email2                = %s,
                 phone_home            = %s,
@@ -295,6 +301,7 @@ class Candidates
             $this->_db->makeQueryString($firstName),
             $this->_db->makeQueryString($middleName),
             $this->_db->makeQueryString($lastName),
+            $this->_db->makeQueryString($alias),
             $this->_db->makeQueryString($email1),
             $this->_db->makeQueryString($email2),
             $this->_db->makeQueryString($phoneHome),
@@ -451,6 +458,7 @@ class Candidates
                 candidate.first_name AS firstName,
                 candidate.middle_name AS middleName,
                 candidate.last_name AS lastName,
+                candidate.alias AS alias,
                 candidate.email1 AS email1,
                 candidate.email2 AS email2,
                 candidate.phone_home AS phoneHome,
@@ -561,6 +569,7 @@ class Candidates
                 candidate.first_name AS firstName,
                 candidate.middle_name AS middleName,
                 candidate.last_name AS lastName,
+                candidate.alias AS alias,
                 candidate.email1 AS email1,
                 candidate.email2 AS email2,
                 candidate.phone_home AS phoneHome,
@@ -608,12 +617,12 @@ class Candidates
         if (count($IDs) != 0)
         {
             $IDsValidated = array();
-            
+
             foreach ($IDs as $id)
             {
                 $IDsValidated[] = $this->_db->makeQueryInteger($id);
             }
-            
+
             $criterion = 'AND candidate.candidate_id IN ('.implode(',', $IDsValidated).')';
         }
         else
@@ -700,15 +709,15 @@ class Candidates
             $this->_siteID
         );
         $rs = $this->_db->getAssoc($sql);
-         
+
         if (empty($rs))
         {
             return -1;
         }
-         
+
         return $rs['candidateID'];
     }
-     
+
 
     /**
      * Returns the number of candidates in the system.  Useful
@@ -1074,7 +1083,7 @@ class Candidates
      * @param integer Candidate ID.
      * @param boolean Administratively hide this candidate?
      * @return boolean Was the query executed successfully?
-     */    
+     */
     public function administrativeHideShow($candidateID, $state)
     {
         $sql = sprintf(
@@ -1473,7 +1482,7 @@ class CandidatesDataGrid extends DataGrid
             $joinSQL  .= ' LEFT JOIN saved_list_entry
                                     ON saved_list_entry.data_item_type = '.DATA_ITEM_CANDIDATE.'
                                     AND saved_list_entry.data_item_id = candidate.candidate_id
-                                    AND saved_list_entry.site_id = '.$this->_siteID;         
+                                    AND saved_list_entry.site_id = '.$this->_siteID;
         }
 
         $sql = sprintf(

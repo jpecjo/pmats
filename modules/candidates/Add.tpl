@@ -157,6 +157,15 @@
 
                     <tr>
                         <td class="tdVertical">
+                            <label id="aliasLabel" for="alias">Alias/Nick Name:</label>
+                        </td>
+                        <td class="tdData">
+                            <input type="text" tabindex="2" name="alias" id="alias" class="inputbox" style="width: 150px" value="<?php if(isset($this->preassignedFields['alias'])) $this->_($this->preassignedFields['alias']); ?>" />&nbsp;*
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdVertical">
                             <label id="emailLabel" for="email1">E-Mail:</label>
                         </td>
                         <td class="tdData">
