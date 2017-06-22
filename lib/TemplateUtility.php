@@ -836,7 +836,7 @@ class TemplateUtility
 
         eval(Hooks::get('TEMPLATE_UTILITY_PRINT_FOOTER'));
 
-        echo '<script src="js/sectionToggle.js"></script>'
+        echo '<script src="js/sectionToggle.js"></script>',"\n";
         echo '</body>', "\n";
         echo '</html>', "\n";
 
