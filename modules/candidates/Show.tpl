@@ -238,7 +238,7 @@ use OpenCATS\UI\CandidateQuickActionMenu;
             </table>
 
 
-            /* Custom sections */
+            <?php /* Custom sections */ ?>
             <p style="cursor:pointer;cursor:hand;" onClick="togDisplay('familybg')" class="note">Family Background</p>
             <div id="familybg" style="display:none;">
               <table class="detailsOutside">

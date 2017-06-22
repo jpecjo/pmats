@@ -643,11 +643,11 @@ class TemplateUtility
                      $al = substr($tabText, $alPosition + 4);
                      $soPosition = strpos($al, "@");
                      $soName = '';
-                     if( $soPosition !== false )		
-                     {		
-                         $soName = substr($al, $soPosition + 1);		
-                         $al = substr($al, 0, $soPosition);		
-                     }		
+                     if( $soPosition !== false )
+                     {
+                         $soName = substr($al, $soPosition + 1);
+                         $al = substr($al, 0, $soPosition);
+                     }
                      if ($_SESSION['CATS']->getAccessLevel($soName) >= $al ||
                          $_SESSION['CATS']->isDemo())
                      {
@@ -714,11 +714,11 @@ class TemplateUtility
                         $al = substr($link, $alPosition + 4);
                         $soPosition = strpos($al, "@");
                         $soName = '';
-                        if( $soPosition !== false )		
-                        {		
-                            $soName = substr($al, $soPosition + 1);		
-                            $al = substr($al, 0, $soPosition);		
-                        }		
+                        if( $soPosition !== false )
+                        {
+                            $soName = substr($al, $soPosition + 1);
+                            $al = substr($al, 0, $soPosition);
+                        }
                         if ($_SESSION['CATS']->getAccessLevel($soName) >= $al ||
                             $_SESSION['CATS']->isDemo())
                         {
@@ -836,6 +836,7 @@ class TemplateUtility
 
         eval(Hooks::get('TEMPLATE_UTILITY_PRINT_FOOTER'));
 
+        echo '<script src="js/sectionToggle.js"></script>'
         echo '</body>', "\n";
         echo '</html>', "\n";
 
