@@ -269,6 +269,36 @@ use OpenCATS\UI\CandidateQuickActionMenu;
               </table>
             </div>
 
+            <p style="cursor:pointer;cursor:hand;" onClick="togDisplay('workexp')" class="note">Work Experiences</p>
+            <div id="workexp" style="display:none;">
+              <table class="detailsOutside">
+                <tr style="vertical-align:top;">
+                  <td width="390" height="100%">
+                    <table class="detailsInside" height="100%">
+                      <tr>
+                        <td class="vertical">Father's Name:</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <p style="cursor:pointer;cursor:hand;" onClick="togDisplay('otherassess')" class="note">Other Assessment</p>
+            <div id="otherassess" style="display:none;">
+              <table class="detailsOutside">
+                <tr style="vertical-align:top;">
+                  <td width="390" height="100%">
+                    <table class="detailsInside" height="100%">
+                      <tr>
+                        <td class="vertical">Shifting:</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
             <?php if($this->EEOSettingsRS['enabled'] == 1): ?>
                 <table class="detailsOutside">
                     <tr>
