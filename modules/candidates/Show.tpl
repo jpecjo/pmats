@@ -23,7 +23,7 @@ use OpenCATS\UI\CandidateQuickActionMenu;
                </tr>
             </table>
 
-            <p class="note">Candidate Details</p>
+            <p class="note">Personal</p>
 
             <?php if ($this->data['isAdminHidden'] == 1): ?>
                 <p class="warning">This Candidate is hidden.  Only CATS Administrators can view it or search for it.  To make it visible by the site users, click <a href="<?php echo(CATSUtility::getIndexName()); ?>?m=candidates&amp;a=administrativeHideShow&amp;candidateID=<?php echo($this->candidateID); ?>&amp;state=0" style="font-weight:bold;">Here.</a></p>
@@ -237,6 +237,22 @@ use OpenCATS\UI\CandidateQuickActionMenu;
                 </tr>
             </table>
 
+
+            /* Custom sections */
+            <p style="cursor:pointer;cursor:hand;" onClick="togDisplay('familybg')" class="note">Family Background</p>
+            <div id="familybg" style="display:none;">
+              <table class="detailsOutside">
+                <tr style="vertical-align:top;">
+                  <td width="390" height="100%">
+                    <table class="detailsInside" height="100%">
+                      <tr>
+                        <td class="vertical">Father's Name:</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </div>
             <?php if($this->EEOSettingsRS['enabled'] == 1): ?>
                 <table class="detailsOutside">
                     <tr>
