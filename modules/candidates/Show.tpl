@@ -253,6 +253,22 @@ use OpenCATS\UI\CandidateQuickActionMenu;
                 </tr>
               </table>
             </div>
+
+            <p style="cursor:pointer;cursor:hand;" onClick="togDisplay('educskills')" class="note">Education and Skills</p>
+            <div id="educskills" style="display:none;">
+              <table class="detailsOutside">
+                <tr style="vertical-align:top;">
+                  <td width="390" height="100%">
+                    <table class="detailsInside" height="100%">
+                      <tr>
+                        <td class="vertical">Elementary:</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
             <?php if($this->EEOSettingsRS['enabled'] == 1): ?>
                 <table class="detailsOutside">
                     <tr>
