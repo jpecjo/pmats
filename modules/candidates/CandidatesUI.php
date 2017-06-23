@@ -1088,14 +1088,14 @@ class CandidatesUI extends UserInterface
             $data['dateAvailableMDY'] = DateUtility::convert(
                 '-', $data['dateAvailable'], DATE_FORMAT_DDMMYY, DATE_FORMAT_YYYYMMDD
             );
-            $data['dobMDY'] = DateUtility::convert (
-                '-', $data['dob'], DATE_FORMAT_DDMMYY, DATE_FORMAT_YYYYMMDD
-              );
+            // $data['dobMDY'] = DateUtility::convert (
+            //     '-', $data['dob'], DATE_FORMAT_DDMMYY, DATE_FORMAT_YYYYMMDD
+            //   );
         }
         else
         {
             $data['dateAvailableMDY'] = $data['dateAvailable'];
-            $data['dobMDY'] = $data['dob'];
+            // $data['dobMDY'] = $data['dob'];
         }
 
         if (!eval(Hooks::get('CANDIDATE_EDIT'))) return;
