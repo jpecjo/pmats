@@ -1086,10 +1086,10 @@ class CandidatesUI extends UserInterface
         if ($_SESSION['CATS']->isDateDMY())
         {
             $data['dateAvailableMDY'] = DateUtility::convert(
-                '-', $data['dateAvailable'], DATE_FORMAT_DDMMYY, DATE_FORMAT_MMDDYY
+                '-', $data['dateAvailable'], DATE_FORMAT_DDMMYY, DATE_FORMAT_YYYYMMDD
             );
             $data['dobMDY'] = DateUtility::convert (
-                '-', $data['dob'], DATE_FORMAT_DDMMYY, DATE_FORMAT_MMDDYY
+                '-', $data['dob'], DATE_FORMAT_DDMMYY, DATE_FORMAT_YYYYMMDD
               );
         }
         else
@@ -1162,7 +1162,7 @@ class CandidatesUI extends UserInterface
                 CommonErrors::fatal(COMMONERROR_MISSINGFIELDS, $this, 'Invalid date of birth.');
             }
 
-            /* Convert start_date to something MySQL can understand. */
+            /* Convert date of birth to something MySQL can understand. */
             $dob = DateUtility::convert(
                 '-', $dob, DATE_FORMAT_MMDDYY, DATE_FORMAT_YYYYMMDD
             );

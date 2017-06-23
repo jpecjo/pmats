@@ -70,6 +70,19 @@
 
                     <tr>
                         <td class="tdVertical">
+                            <label id="dobLabel" for="dob">Date of Birth:</label>
+                        </td>
+                        <td class="tdData">
+                            <?php if (!empty($this->data['dob'])): ?>
+                                <script type="text/javascript">DateInput('dob', false, 'MM-DD-YY', '<?php echo($this->data['dobMDY']); ?>', -1);</script>
+                            <?php else: ?>
+                                <script type="text/javascript">DateInput('dob', false, 'MM-DD-YY', '', -1);</script>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdVertical">
                             <label id="email1Label" for="email1">E-Mail:</label>
                         </td>
                         <td class="tdData">
