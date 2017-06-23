@@ -169,7 +169,7 @@
                             <label id="dobLabel" for="dob">Date of Birth:</label>
                         </td>
                         <td class="tdData">
-                            <script type="text/javascript">DateInput('dob', false, 'MM-DD-YY', '', <?php echo($tabIndex++); ?>);</script>
+                            <script type="text/javascript">DateInput('dob', false, 'MM-DD-YYYY', '', <?php echo($tabIndex++); ?>);</script>
 
                             <?php /* DateInput()s take up 3 tabindexes. */ ?>
                             <?php $tabIndex += 2; ?>
@@ -437,7 +437,7 @@
                             <label id="dateAvailableLabel" for="dateAvailable">Date Available:</label>
                         </td>
                         <td class="tdData">
-                            <script type="text/javascript">DateInput('dateAvailable', false, 'MM-DD-YY', '', <?php echo($tabIndex++); ?>);</script>
+                            <script type="text/javascript">DateInput('dateAvailable', false, 'MM-DD-YYYY', '', <?php echo($tabIndex++); ?>);</script>
 
                             <?php /* DateInput()s take up 3 tabindexes. */ ?>
                             <?php $tabIndex += 2; ?>
