@@ -74,9 +74,9 @@
                         </td>
                         <td class="tdData">
                             <?php if (!empty($this->data['dob'])): ?>
-                                <script type="text/javascript">DateInput('dob', false, 'MM-DD-YYYY', '<?php echo($this->data['dobMDY']); ?>', -1);</script>
+                                <script type="text/javascript">DateInput('dob', false, 'MM-DD-YY', '<?php echo($this->data['dobMDY']); ?>', -1);</script>
                             <?php else: ?>
-                                <script type="text/javascript">DateInput('dob', false, 'MM-DD-YYYY', '', -1);</script>
+                                <script type="text/javascript">DateInput('dob', false, 'MM-DD-YY', '', -1);</script>
                             <?php endif; ?>
                         </td>
                     </tr>
