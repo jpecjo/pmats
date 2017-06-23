@@ -166,6 +166,18 @@
 
                     <tr>
                         <td class="tdVertical">
+                            <label id="dob" for="dob">Date of Birth:</label>
+                        </td>
+                        <td class="tdData">
+                            <script type="text/javascript">DateInput('dob', false, 'MM-DD-YY', '', <?php echo($tabIndex++); ?>);</script>
+
+                            <?php /* DateInput()s take up 3 tabindexes. */ ?>
+                            <?php $tabIndex += 2; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tdVertical">
                             <label id="emailLabel" for="email1">E-Mail:</label>
                         </td>
                         <td class="tdData">

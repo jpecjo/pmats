@@ -65,6 +65,7 @@ class Candidates
      * @param string Middle name / initial.
      * @param string Last name.
      * @param string Alias.
+     * @param string Date of Birth.
      * @param string Primary e-mail address.
      * @param string Secondary e-mail address.
      * @param string Home phone number.
@@ -92,7 +93,7 @@ class Candidates
      * @param boolean Skip creating a history entry?
      * @return integer Candidate ID of new candidate, or -1 on failure.
      */
-    public function add($firstName, $middleName, $lastName, $alias, $email1, $email2,
+    public function add($firstName, $middleName, $lastName, $alias, $dob, $email1, $email2,
         $phoneHome, $phoneCell, $phoneWork, $address, $city, $state, $zip,
         $source, $keySkills, $dateAvailable, $currentEmployer, $canRelocate,
         $currentPay, $desiredPay, $notes, $webSite, $bestTimeToCall, $enteredBy, $owner,
@@ -105,6 +106,7 @@ class Candidates
                 middle_name,
                 last_name,
                 alias,
+                dob,
                 email1,
                 email2,
                 phone_home,
@@ -160,6 +162,7 @@ class Candidates
                 %s,
                 %s,
                 %s,
+                %s,
                 0,
                 %s,
                 %s,
@@ -174,6 +177,7 @@ class Candidates
             $this->_db->makeQueryString($middleName),
             $this->_db->makeQueryString($lastName),
             $this->_db->makeQueryString($alias),
+            $this->_db->makeQueryString($dob),
             $this->_db->makeQueryString($email1),
             $this->_db->makeQueryString($email2),
             $this->_db->makeQueryString($phoneHome),
@@ -226,6 +230,7 @@ class Candidates
      * @param string Middle name / initial.
      * @param string Last name.
      * @param string Alias.
+     * @param string Date of Birth.
      * @param string Primary e-mail address.
      * @param string Secondary e-mail address.
      * @param string Home phone number.
@@ -251,7 +256,7 @@ class Candidates
      * @param string EEO disability status, or '' to not specify.
      * @return boolean True if successful; false otherwise.
      */
-    public function update($candidateID, $isActive, $firstName, $middleName, $lastName, $alias,
+    public function update($candidateID, $isActive, $firstName, $middleName, $lastName, $alias, $dob,
         $email1, $email2, $phoneHome, $phoneCell, $phoneWork, $address,
         $city, $state, $zip, $source, $keySkills, $dateAvailable,
         $currentEmployer, $canRelocate, $currentPay, $desiredPay,
@@ -267,6 +272,7 @@ class Candidates
                 middle_name           = %s,
                 last_name             = %s,
                 alias                 = %s,
+                dob                   = %s,
                 email1                = %s,
                 email2                = %s,
                 phone_home            = %s,
@@ -302,6 +308,7 @@ class Candidates
             $this->_db->makeQueryString($middleName),
             $this->_db->makeQueryString($lastName),
             $this->_db->makeQueryString($alias),
+            $this->_db->makeQueryString($dob),
             $this->_db->makeQueryString($email1),
             $this->_db->makeQueryString($email2),
             $this->_db->makeQueryString($phoneHome),
@@ -459,6 +466,9 @@ class Candidates
                 candidate.middle_name AS middleName,
                 candidate.last_name AS lastName,
                 candidate.alias AS alias,
+                DATE_FORMAT (
+                  candidate.dob, '%%m-%%d-%%y'
+                ) AS dob,
                 candidate.email1 AS email1,
                 candidate.email2 AS email2,
                 candidate.phone_home AS phoneHome,
@@ -570,6 +580,9 @@ class Candidates
                 candidate.middle_name AS middleName,
                 candidate.last_name AS lastName,
                 candidate.alias AS alias,
+                DATE_FORMAT (
+                  candidate.dob, '%%m-%%d-%%y'
+                ) AS dob,
                 candidate.email1 AS email1,
                 candidate.email2 AS email2,
                 candidate.phone_home AS phoneHome,

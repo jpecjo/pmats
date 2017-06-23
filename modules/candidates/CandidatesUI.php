@@ -856,6 +856,7 @@ class CandidatesUI extends UserInterface
                 'middleName'      => $this->getTrimmedInput('middleName', $_POST),
                 'lastName'        => $this->getTrimmedInput('lastName', $_POST),
                 'alias'           => $this->getTrimmedInput('alias', $_POST),
+                'dob'             => $this->getTrimmedInput('dob', $_POST),
                 'email1'          => $this->getTrimmedInput('email1', $_POST),
                 'email2'          => $this->getTrimmedInput('email2', $_POST),
                 'phoneHome'       => $this->getTrimmedInput('phoneHome', $_POST),
@@ -1087,10 +1088,14 @@ class CandidatesUI extends UserInterface
             $data['dateAvailableMDY'] = DateUtility::convert(
                 '-', $data['dateAvailable'], DATE_FORMAT_DDMMYY, DATE_FORMAT_MMDDYY
             );
+            $data['dobMDY'] = DateUtility::convert (
+                '-', $data['dob'], DATE_FORMAT_DDMMYY, DATE_FORMAT_MMDDYY
+              );
         }
         else
         {
             $data['dateAvailableMDY'] = $data['dateAvailable'];
+            $data['dobMDY'] = $data['dob'];
         }
 
         if (!eval(Hooks::get('CANDIDATE_EDIT'))) return;
@@ -1148,6 +1153,21 @@ class CandidatesUI extends UserInterface
                 '-', $dateAvailable, DATE_FORMAT_MMDDYY, DATE_FORMAT_YYYYMMDD
             );
         }
+
+        $dob = $this->getTrimmedInput('dob', $_POST);
+        if (!empty($dob))
+        {
+            if (!DateUtility::validate('-', $dob, DATE_FORMAT_MMDDYY))
+            {
+                CommonErrors::fatal(COMMONERROR_MISSINGFIELDS, $this, 'Invalid date of birth.');
+            }
+
+            /* Convert start_date to something MySQL can understand. */
+            $dob = DateUtility::convert(
+                '-', $dob, DATE_FORMAT_MMDDYY, DATE_FORMAT_YYYYMMDD
+            );
+        }
+
 
         $formattedPhoneHome = StringUtility::extractPhoneNumber(
             $this->getTrimmedInput('phoneHome', $_POST)
@@ -1259,6 +1279,7 @@ class CandidatesUI extends UserInterface
         $middleName      = $this->getTrimmedInput('middleName', $_POST);
         $lastName        = $this->getTrimmedInput('lastName', $_POST);
         $alias           = $this->getTrimmedInput('alias', $_POST);
+        $dob             = $this->getTrimmedInput('dob', $_POST);
         $email1          = $this->getTrimmedInput('email1', $_POST);
         $email2          = $this->getTrimmedInput('email2', $_POST);
         $address         = $this->getTrimmedInput('address', $_POST);
@@ -1297,6 +1318,7 @@ class CandidatesUI extends UserInterface
             $middleName,
             $lastName,
             $alias,
+            $dob,
             $email1,
             $email2,
             $phoneHome,
@@ -2492,6 +2514,20 @@ class CandidatesUI extends UserInterface
             );
         }
 
+        $dob = $this->getTrimmedInput('dob', $_POST);
+        if (!empty($dob))
+        {
+            if (!DateUtility::validate('-', $dob, DATE_FORMAT_MMDDYY))
+            {
+                $this->$fatal('Invalid availability date.', $moduleDirectory);
+            }
+
+            /* Convert start_date to something MySQL can understand. */
+            $dob = DateUtility::convert(
+                '-', $dob, DATE_FORMAT_MMDDYY, DATE_FORMAT_YYYYMMDD
+            );
+        }
+
         $formattedPhoneHome = StringUtility::extractPhoneNumber(
             $this->getTrimmedInput('phoneHome', $_POST)
         );
@@ -2576,6 +2612,8 @@ class CandidatesUI extends UserInterface
             $firstName,
             $middleName,
             $lastName,
+            $alias,
+            $dob,
             $email1,
             $email2,
             $phoneHome,

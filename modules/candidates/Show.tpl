@@ -64,6 +64,16 @@ use OpenCATS\UI\CandidateQuickActionMenu;
                             </tr>
 
                             <tr>
+                                <td class="vertical">Date of Birth:</td>
+                                <td class="data"><?php $this->_($this->data['dob']); ?></td>
+                            </tr>
+
+                            <tr>
+                                <td class="vertical">Address:</td>
+                                <td class="data"><?php echo(nl2br(htmlspecialchars($this->data['address']))); ?></td>
+                            </tr>
+
+                            <tr>
                                 <td class="vertical">E-Mail:</td>
                                 <td class="data">
                                     <a href="mailto:<?php $this->_($this->data['email1']); ?>">
@@ -98,11 +108,6 @@ use OpenCATS\UI\CandidateQuickActionMenu;
                             <tr>
                                 <td class="vertical">Best Time To Call:</td>
                                 <td class="data"><?php $this->_($this->data['bestTimeToCall']); ?></td>
-                            </tr>
-
-                            <tr>
-                                <td class="vertical">Address:</td>
-                                <td class="data"><?php echo(nl2br(htmlspecialchars($this->data['address']))); ?></td>
                             </tr>
 
                             <tr>
@@ -238,7 +243,7 @@ use OpenCATS\UI\CandidateQuickActionMenu;
             </table>
 
 
-            <?php /* Custom sections */ ?>
+            <?php /* Start of Custom Sections */ ?>
             <p style="cursor:pointer;cursor:hand;" onClick="togDisplay('familybg')" class="note">Family Background</p>
             <div id="familybg" style="display:none;">
               <table class="detailsOutside">
