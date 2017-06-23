@@ -1086,16 +1086,16 @@ class CandidatesUI extends UserInterface
         if ($_SESSION['CATS']->isDateDMY())
         {
             $data['dateAvailableMDY'] = DateUtility::convert(
-                '-', $data['dateAvailable'], DATE_FORMAT_DDMMYY, DATE_FORMAT_YYYYMMDD
+                '-', $data['dateAvailable'], DATE_FORMAT_DDMMYY, DATE_FORMAT_MMDDYY
             );
-            // $data['dobMDY'] = DateUtility::convert (
-            //     '-', $data['dob'], DATE_FORMAT_DDMMYY, DATE_FORMAT_YYYYMMDD
-            //   );
+            $data['dobMDY'] = DateUtility::convert (
+                '-', $data['dob'], DATE_FORMAT_DDMMYY, DATE_FORMAT_MMDDYY
+              );
         }
         else
         {
             $data['dateAvailableMDY'] = $data['dateAvailable'];
-            // $data['dobMDY'] = $data['dob'];
+            $data['dobMDY'] = $data['dob'];
         }
 
         if (!eval(Hooks::get('CANDIDATE_EDIT'))) return;
