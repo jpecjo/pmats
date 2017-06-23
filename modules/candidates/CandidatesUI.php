@@ -856,7 +856,7 @@ class CandidatesUI extends UserInterface
                 'middleName'      => $this->getTrimmedInput('middleName', $_POST),
                 'lastName'        => $this->getTrimmedInput('lastName', $_POST),
                 'alias'           => $this->getTrimmedInput('alias', $_POST),
-                'dob'             => $this->getTrimmedInput('dob', $_POST),
+                // 'dob'             => $this->getTrimmedInput('dob', $_POST),
                 'email1'          => $this->getTrimmedInput('email1', $_POST),
                 'email2'          => $this->getTrimmedInput('email2', $_POST),
                 'phoneHome'       => $this->getTrimmedInput('phoneHome', $_POST),

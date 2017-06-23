@@ -166,7 +166,7 @@
 
                     <tr>
                         <td class="tdVertical">
-                            <label id="dob" for="dob">Date of Birth:</label>
+                            <label id="dobLabel" for="dob">Date of Birth:</label>
                         </td>
                         <td class="tdData">
                             <script type="text/javascript">DateInput('dob', false, 'MM-DD-YY', '', <?php echo($tabIndex++); ?>);</script>
